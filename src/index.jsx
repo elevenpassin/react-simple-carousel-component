@@ -71,11 +71,13 @@ class Carousel extends Component {
 
 Carousel.propTypes = {
   className: PropTypes.string,
-  items: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    src: PropTypes.string.isRequired,
-  }),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      src: PropTypes.string.isRequired,
+    })
+  ),
   leftArrow: PropTypes.string,
   rightArrow: PropTypes.string,
 }
