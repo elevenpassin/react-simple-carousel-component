@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 class Carousel extends Component {
@@ -34,7 +35,8 @@ class Carousel extends Component {
 
 
   render() {
-    const { className } = this.props;
+    const { className, leftArrow, rightArrow } = this.props;
+    const  currentItem = this.current();
     return (
       <div
         className={className}
@@ -42,32 +44,73 @@ class Carousel extends Component {
         <div
           className="img"
           style={{
-            background: `url(${this.current()}) no-repeat center / cover`,
+            background: `url(${currentItem.src}) no-repeat center / contain`,
           }}
         >
+          <div className="content">
+            <div className="title">{currentItem.title}</div>
+            <div className="description">{currentItem.description}</div>
+          </div>
         </div>
         <button
           onClick={this.previous}
           className="previous"
-        > 
+        >
+          <img src={leftArrow} />
         </button>
         <button
           onClick={this.next}
           className="next"
         >
+          <img src={rightArrow} />
         </button>
       </div>
     );
   }
 }
 
+Carousel.propTypes = {
+  className: PropTypes.string,
+  items: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    src: PropTypes.string.isRequired,
+  }),
+  leftArrow: PropTypes.string,
+  rightArrow: PropTypes.string,
+}
+
 export default styled(Carousel)`
   position: relative;
   overflow: hidden;
+  background: #221E22;
 
   &, .img {
     height: 500px;
     width: 100%;
+  }
+
+  .img {
+    margin: 0;
+    padding: 0;
+    .content {
+      margin: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #221E22;
+      color: #FFF;
+      padding: 20px;
+      .title {
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      .description {
+
+      }
+    }
   }
 
   .previous {
@@ -90,7 +133,10 @@ export default styled(Carousel)`
     height: 100%;
     border: none;
     transition: all 0.2s;
-    opacity: 0;
+    color: #FFF;
+    padding: 20px;
+    margin: 0;
+    opacity: 0.1;
     
     &:hover {
       opacity: 0.9;
@@ -99,6 +145,11 @@ export default styled(Carousel)`
     
     &:active, &:focus {
       outline: none;
+    }
+
+    img {
+      width: 30%;
+      height: 30%;
     }
   }
 `;

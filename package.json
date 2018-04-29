@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/buoyantair/react-carousel-component#readme",
   "dependencies": {
-    "cycled": "^0.2.0",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "styled-components": "^3.2.6"
   },
