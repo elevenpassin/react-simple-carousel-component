@@ -57,13 +57,17 @@ class Carousel extends Component {
           onClick={this.previous}
           className="previous"
         >
-          <img src={leftArrow} />
+          {
+            leftArrow && rightArrow && <img src={leftArrow} />
+          }
         </button>
         <button
           onClick={this.next}
           className="next"
         >
-          <img src={rightArrow} />
+          {
+            rightArrow && leftArrow && <img src={rightArrow} />
+          }
         </button>
       </div>
     );
