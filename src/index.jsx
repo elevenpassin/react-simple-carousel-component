@@ -35,11 +35,12 @@ class Carousel extends Component {
 
 
   render() {
-    const { className, leftArrow, rightArrow } = this.props;
+    const { className, leftArrow, rightArrow, ...rest } = this.props;
     const  currentItem = this.current();
     return (
       <div
         className={className}
+        {...rest}
       >
         <div
           className="img"
